@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тарифы для работодателей - CareerFinder</title>
+    <meta name="description" content="Эффективные тарифы для подбора персонала. Размещайте вакансии, находите кандидатов и развивайте бизнес с CareerFinder.">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Специфические стили для страницы тарифов */
+        .pricing-hero {
+            background: linear-gradient(135deg, var(--primary-600), var(--primary-800));
+            color: white;
+            padding: var(--space-20) 0;
+            text-align: center;
+        }
+
+        .pricing-hero h1 {
+            font-size: var(--font-size-5xl);
+            margin-bottom: var(--space-4);
+            color: white;
+        }
+
+        .pricing-hero .lead {
+            font-size: var(--font-size-xl);
+            opacity: 0.9;
+            color: white;
+        }
+
+        .pricing-plans {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--space-8);
+            margin: var(--space-16) 0;
+            padding: 0 var(--space-6);
+        }
+
+        .pricing-card {
+            background: var(--bg-primary);
+            padding: var(--space-8);
+            border-radius: var(--radius-2xl);
+            border: 2px solid var(--border-light);
+            box-shadow: var(--shadow-lg);
+            transition: all var(--transition-slow);
+            position: relative;
+            text-align: center;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--primary-500);
+            box-shadow: var(--shadow-xl);
+            transform: scale(1.05);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-2xl);
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-8px);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--accent-500), var(--warning-500));
+            color: white;
+            padding: var(--space-2) var(--space-6);
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-sm);
+            font-weight: 700;
+        }
+
+        .pricing-card h3 {
+            font-size: var(--font-size-2xl);
+            margin-bottom: var(--space-4);
+            color: var(--text-primary);
+        }
+
+        .price {
+            font-size: var(--font-size-5xl);
+            font-weight: 800;
+            color: var(--primary-600);
+            margin-bottom: var(--space-6);
+        }
+
+        .price-period {
+            font-size: var(--font-size-lg);
+            color: var(--text-tertiary);
+            font-weight: 400;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: var(--space-8) 0;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            padding: var(--space-3) 0;
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-icon {
+            color: var(--success-500);
+            font-weight: bold;
+        }
+
+        .pricing-actions {
+            margin-top: var(--space-8);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--space-6);
+            margin: var(--space-12) 0;
+        }
+
+        .service-card {
+            background: var(--bg-primary);
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-normal);
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: var(--space-4);
+            display: block;
+        }
+
+        .service-price {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            color: var(--primary-600);
+            margin: var(--space-4) 0;
+        }
+
+        .comparison-table {
+            background: var(--bg-primary);
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--border-light);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            margin: var(--space-12) 0;
+        }
+
+        .comparison-header {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            background: var(--primary-600);
+            color: white;
+            font-weight: 600;
+        }
+
+        .comparison-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .comparison-row:last-child {
+            border-bottom: none;
+        }
+
+        .comparison-cell {
+            padding: var(--space-4);
+            display: flex;
+            align-items: center;
+        }
+
+        .comparison-row:nth-child(even) {
+            background: var(--bg-secondary);
+        }
+
+        .checkmark {
+            color: var(--success-500);
+            font-weight: bold;
+        }
+
+        .cross {
+            color: var(--error-500);
+            font-weight: bold;
+        }
+
+        .faq-section {
+            margin: var(--space-16) 0;
+        }
+
+        .faq-item {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--space-4);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: var(--space-6);
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            padding: 0 var(--space-6);
+            max-height: 0;
+            overflow: hidden;
+            transition: all var(--transition-normal);
+        }
+
+        .faq-item.active .faq-answer {
+            padding: var(--space-6);
+            max-height: 500px;
+        }
+
+        @media (max-width: 768px) {
+            .pricing-plans {
+                grid-template-columns: 1fr;
+                padding: 0 var(--space-4);
+            }
+
+            .pricing-card.featured {
+                transform: none;
+            }
+
+            .pricing-card.featured:hover {
+                transform: translateY(-8px);
+            }
+
+            .comparison-header,
+            .comparison-row {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .comparison-cell:first-child {
+                background: var(--primary-50);
+                font-weight: 600;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Перейти к основному содержанию</a>
+
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 2L20 8H28L32 14V28C32 29.1046 31.1046 30 30 30H2C0.89543 30 0 29.1046 0 28V14L4 8H12L16 2Z" fill="url(#logoGradient)"/>
+                        <path d="M12 8H20L16 2L12 8Z" fill="white" fill-opacity="0.2"/>
+                        <path d="M4 8H28L32 14H0L4 8Z" fill="white" fill-opacity="0.3"/>
+                        <path d="M8 14V24H12V14M14 14V24H18V14M20 14V24H24V14" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                        <defs>
+                            <linearGradient id="logoGradient" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#2563eb"/>
+                                <stop offset="1" stop-color="#1d4ed8"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <span class="brand-title">CareerFinder</span>
+            </a>
+            
+            <nav>
+                <a href="index.html" class="nav-link">Главная</a>
+                <a href="vacancies.html" class="nav-link">Вакансии</a>
+                <a href="companies.html" class="nav-link">Компании</a>
+                <a href="events.html" class="nav-link">Мероприятия</a>
+                <a href="blog.html" class="nav-link">Блог</a>
+            </nav>
+            
+            <div class="auth-buttons">
+                <button class="btn btn-outline" onclick="openModal('loginModal')">Войти</button>
+                <button class="btn btn-primary" onclick="openModal('registerModal')">Регистрация</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="pricing-hero">
+        <div class="wrap">
+            <h1>Эффективный подбор персонала</h1>
+            <p class="lead">Тарифы для быстрого и качественного закрытия вакансий</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <div class="wrap">
+            <!-- Pricing Plans -->
+            <section class="pricing-section">
+                <div class="section-header">
+                    <h2>Выберите подходящий тариф</h2>
+                    <p>Все тарифы включают доступ к базе резюме и техническую поддержку</p>
+                </div>
+
+                <div class="pricing-plans">
+                    <!-- Basic Plan -->
+                    <div class="pricing-card">
+                        <h3>Базовый</h3>
+                        <div class="price">2 990 <span class="price-period">₽/месяц</span></div>
+                        <ul class="pricing-features">
+                            <li><span class="feature-icon">✓</span> 1 активная вакансия</li>
+                            <li><span class="feature-icon">✓</span> Базовый поиск по резюме</li>
+                            <li><span class="feature-icon">✓</span> До 50 откликов</li>
+                            <li><span class="feature-icon">✓</span> Стандартное размещение</li>
+                            <li><span class="feature-icon">✓</span> Email-уведомления</li>
+                        </ul>
+                        <div class="pricing-actions">
+                            <button class="btn btn-outline btn-full" onclick="selectPlan('basic')">Выбрать тариф</button>
+                        </div>
+                    </div>
+
+                    <!-- Standard Plan -->
+                    <div class="pricing-card featured">
+                        <div class="pricing-badge">ПОПУЛЯРНЫЙ</div>
+                        <h3>Стандартный</h3>
+                        <div class="price">7 990 <span class="price-period">₽/месяц</span></div>
+                        <ul class="pricing-features">
+                            <li><span class="feature-icon">✓</span> 5 активных вакансий</li>
+                            <li><span class="feature-icon">✓</span> Расширенный поиск</li>
+                            <li><span class="feature-icon">✓</span> До 200 откликов</li>
+                            <li><span class="feature-icon">✓</span> Выделение вакансии</li>
+                            <li><span class="feature-icon">✓</span> Статистика просмотров</li>
+                            <li><span class="feature-icon">✓</span> Приоритет в поиске</li>
+                        </ul>
+                        <div class="pricing-actions">
+                            <button class="btn btn-primary btn-full" onclick="selectPlan('standard')">Выбрать тариф</button>
+                        </div>
+                    </div>
+
+                    <!-- Premium Plan -->
+                    <div class="pricing-card">
+                        <h3>Премиум</h3>
+                        <div class="price">14 990 <span class="price-period">₽/месяц</span></div>
+                        <ul class="pricing-features">
+                            <li><span class="feature-icon">✓</span> 15 активных вакансий</li>
+                            <li><span class="feature-icon">✓</span> Полный доступ к базе</li>
+                            <li><span class="feature-icon">✓</span> Безлимитные отклики</li>
+                            <li><span class="feature-icon">✓</span> Срочный тэг "Urgent"</li>
+                            <li><span class="feature-icon">✓</span> Расширенная аналитика</li>
+                            <li><span class="feature-icon">✓</span> Персональный менеджер</li>
+                        </ul>
+                        <div class="pricing-actions">
+                            <button class="btn btn-outline btn-full" onclick="selectPlan('premium')">Выбрать тариф</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Additional Services -->
+            <section class="services-section">
+                <div class="section-header">
+                    <h2>Дополнительные услуги</h2>
+                    <p>Ускорьте найм с помощью специальных услуг</p>
+                </div>
+
+                <div class="services-grid" id="servicesContainer">
+                    <!-- Services loaded by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Comparison Table -->
+            <section class="comparison-section">
+                <div class="section-header">
+                    <h2>Сравнение тарифов</h2>
+                </div>
+
+                <div class="comparison-table">
+                    <div class="comparison-header">
+                        <div class="comparison-cell">Возможности</div>
+                        <div class="comparison-cell">Базовый</div>
+                        <div class="comparison-cell">Стандартный</div>
+                        <div class="comparison-cell">Премиум</div>
+                    </div>
+                    
+                    <div class="comparison-row">
+                        <div class="comparison-cell">Активные вакансии</div>
+                        <div class="comparison-cell">1</div>
+                        <div class="comparison-cell">5</div>
+                        <div class="comparison-cell">15</div>
+                    </div>
+                    
+                    <div class="comparison-row">
+                        <div class="comparison-cell">Отклики в месяц</div>
+                        <div class="comparison-cell">50</div>
+                        <div class="comparison-cell">200</div>
+                        <div class="comparison-cell">Безлимит</div>
+                    </div>
+                    
+                    <div class="comparison-row">
+                        <div class="comparison-cell">Выделение вакансии</div>
+                        <div class="comparison-cell"><span class="cross">✗</span></div>
+                        <div class="comparison-cell"><span class="checkmark">✓</span></div>
+                        <div class="comparison-cell"><span class="checkmark">✓</span></div>
+                    </div>
+                    
+                    <div class="comparison-row">
+                        <div class="comparison-cell">Расширенная статистика</div>
+                        <div class="comparison-cell"><span class="cross">✗</span></div>
+                        <div class="comparison-cell"><span class="checkmark">✓</span></div>
+                        <div class="comparison-cell"><span class="checkmark">✓</span></div>
+                    </div>
+                    
+                    <div class="comparison-row">
+                        <div class="comparison-cell">Приоритет в поиске</div>
+                        <div class="comparison-cell"><span class="cross">✗</span></div>
+                        <div class="comparison-cell"><span class="checkmark">✓</span></div>
+                        <div class="comparison-cell"><span class="checkmark">✓</span></div>
+                    </div>
+                    
+                    <div class="comparison-row">
+                        <div class="comparison-cell">Персональный менеджер</div>
+                        <div class="comparison-cell"><span class="cross">✗</span></div>
+                        <div class="comparison-cell"><span class="cross">✗</span></div>
+                        <div class="comparison-cell"><span class="checkmark">✓</span></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ Section -->
+            <section class="faq-section">
+                <div class="section-header">
+                    <h2>Частые вопросы</h2>
+                </div>
+
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            Как происходит оплата?
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            Оплата происходит онлайн через безопасные платежные системы. 
+                            Доступны банковские карты, электронные кошельки и банковский перевод.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            Можно ли изменить тариф позже?
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            Да, вы можете изменить тариф в любой момент. 
+                            При переходе на более дорогой тариф будет произведен перерасчет.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            Есть ли пробный период?
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            Предоставляем 14-дневный пробный период для тарифа "Стандартный". 
+                            В течение этого периода вы можете оценить все возможности платформы.
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>CareerFinder</h4>
+                <p>Лучшая платформа для поиска работы и развития карьеры</p>
+            </div>
+            <div class="footer-section">
+                <h4>Навигация</h4>
+                <a href="index.html">Главная</a>
+                <a href="vacancies.html">Вакансии</a>
+                <a href="companies.html">Компании</a>
+                <a href="events.html">Мероприятия</a>
+                <a href="blog.html">Блог</a>
+            </div>
+            <div class="footer-section">
+                <h4>Работодателям</h4>
+                <a href="employer-packages.html">Тарифы</a>
+                <a href="#">Разместить вакансию</a>
+                <a href="#">Регистрация компании</a>
+            </div>
+            <div class="footer-section">
+                <h4>Контакты</h4>
+                <a href="mailto:info@careerfinder.ru">info@careerfinder.ru</a>
+                <a href="tel:+78001234567">8 (800) 123-45-67</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 CareerFinder. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <div id="loginModal" class="modal">
+        <h3>Вход в аккаунт</h3>
+        <form id="loginForm">
+            <input type="email" placeholder="Email" required>
+            <input type="password" placeholder="Пароль" required>
+            <div class="form-actions">
+                <button type="button" class="btn btn-outline" onclick="closeModal('loginModal')">Отмена</button>
+                <button type="submit" class="btn btn-primary">Войти</button>
+            </div>
+        </form>
+    </div>
+
+    <div id="registerModal" class="modal">
+        <h3>Регистрация</h3>
+        <form id="registerForm">
+            <input type="text" placeholder="Имя и фамилия" required>
+            <input type="email" placeholder="Email" required>
+            <input type="password" placeholder="Пароль" required minlength="6">
+            <input type="text" placeholder="Профессия" required>
+            <div class="form-actions">
+                <button type="button" class="btn btn-outline" onclick="closeModal('registerModal')">Отмена</button>
+                <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="overlay" id="overlay" onclick="closeAllModals()"></div>
+
+    <script src="script.js"></script>
+    <script src="services.js"></script>
+    <script>
+        // Функции для страницы тарифов
+        function selectPlan(plan) {
+            if (!window.careerFinder?.currentUser) {
+                showNotification('Войдите в систему для выбора тарифа', 'warning');
+                openModal('loginModal');
+                return;
+            }
+
+            const planNames = {
+                basic: 'Базовый',
+                standard: 'Стандартный',
+                premium: 'Премиум'
+            };
+
+            showNotification(`Выбран тариф "${planNames[plan]}"`, 'info');
+            
+            // Здесь будет редирект на страницу оплаты
+            setTimeout(() => {
+                window.location.href = `payment.html?plan=${plan}`;
+            }, 1500);
+        }
+
+        function toggleFAQ(element) {
+            const faqItem = element.parentElement;
+            const isActive = faqItem.classList.contains('active');
+            
+            // Закрываем все FAQ
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+                item.querySelector('.faq-toggle').textContent = '+';
+            });
+            
+            // Открываем текущий, если был закрыт
+            if (!isActive) {
+                faqItem.classList.add('active');
+                element.querySelector('.faq-toggle').textContent = '−';
+            }
+        }
+
+        // Загрузка дополнительных услуг
+        document.addEventListener('DOMContentLoaded', function() {
+            loadAdditionalServices();
+        });
+
+        function loadAdditionalServices() {
+            const container = document.getElementById('servicesContainer');
+            if (!container) return;
+
+            const services = [
+                {
+                    id: 'highlight',
+                    icon: '🔍',
+                    title: 'Выделение вакансии',
+                    price: '500 ₽',
+                    period: '7 дней',
+                    description: 'Ваша вакансия будет выделена цветом и привлекать больше внимания'
+                },
+                {
+                    id: 'urgent',
+                    icon: '⚡',
+                    title: 'Срочный тэг "Urgent"',
+                    price: '300 ₽',
+                    period: '3 дня',
+                    description: 'Пометка "Срочно" увеличит отклики в 2-3 раза'
+                },
+                {
+                    id: 'top',
+                    icon: '⭐',
+                    title: 'Топ-размещение',
+                    price: '1 500 ₽',
+                    period: '7 дней',
+                    description: 'Размещение вакансии в топе поисковой выдачи'
+                },
+                {
+                    id: 'database',
+                    icon: '📊',
+                    title: 'Полный доступ к базе',
+                    price: '5 000 ₽',
+                    period: '30 дней',
+                    description: 'Неограниченный доступ ко всей базе резюме'
+                }
+            ];
+
+            container.innerHTML = services.map(service => `
+                <div class="service-card">
+                    <div class="service-icon">${service.icon}</div>
+                    <h3>${service.title}</h3>
+                    <div class="service-price">${service.price}</div>
+                    <p>${service.description}</p>
+                    <div style="color: var(--text-tertiary); font-size: var(--font-size-sm); margin: var(--space-2) 0;">
+                        на ${service.period}
+                    </div>
+                    <button class="btn btn-outline btn-full" onclick="selectService('${service.id}')">
+                        Добавить услугу
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function selectService(serviceId) {
+            if (!window.careerFinder?.currentUser) {
+                showNotification('Войдите в систему для заказа услуги', 'warning');
+                openModal('loginModal');
+                return;
+            }
+
+            showNotification('Услуга добавлена к заказу', 'success');
+        }
+
+        // Глобальные функции для уведомлений
+        function showNotification(message, type = 'info') {
+            if (window.careerFinder) {
+                window.careerFinder.showNotification(message, type);
+            } else {
+                alert(message);
+            }
+        }
+
+        function openModal(modalId) {
+            if (window.careerFinder) {
+                window.careerFinder.openModal(modalId);
+            }
+        }
+
+        function closeModal(modalId) {
+            if (window.careerFinder) {
+                window.careerFinder.closeModal(modalId);
+            }
+        }
+
+        function closeAllModals() {
+            if (window.careerFinder) {
+                window.careerFinder.closeAllModals();
+            }
+        }
+    </script>
+</body>
+</html>

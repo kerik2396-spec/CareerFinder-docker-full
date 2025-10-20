@@ -1,0 +1,4 @@
+Здесь будут изображения для сайта
+- logo.png
+- illustration.svg
+- favicon.ico

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Часто задаваемые вопросы | CareerFinder</title>
+    <meta name="description" content="Ответы на часто задаваемые вопросы о поиске работы, составлении резюме, собеседованиях и использовании платформы CareerFinder.">
+    <meta name="keywords" content="FAQ, вопросы, помощь, поддержка, CareerFinder">
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                        <rect x="5" y="10" width="30" height="24" rx="3" fill="#2d8bcf"/>
+                        <rect x="8" y="13" width="24" height="4" rx="1" fill="white"/>
+                        <rect x="8" y="19" width="18" height="2" rx="1" fill="white" fill-opacity="0.8"/>
+                        <rect x="8" y="23" width="14" height="2" rx="1" fill="white" fill-opacity="0.8"/>
+                        <rect x="8" y="27" width="10" height="2" rx="1" fill="white" fill-opacity="0.8"/>
+                        <path d="M15 5L20 10H10L15 5Z" fill="#2d8bcf"/>
+                    </svg>
+                </div>
+                <span class="brand-title">CareerFinder</span>
+            </a>
+            <nav>
+                <a href="index.html" class="nav-link">Главная</a>
+                <a href="vacancies.html" class="nav-link">Вакансии</a>
+                <a href="companies.html" class="nav-link">Компании</a>
+                <a href="events.html" class="nav-link">Мероприятия</a>
+                <a href="blog.html" class="nav-link">Блог</a>
+                <a href="faq.html" class="nav-link active">FAQ</a>
+            </nav>
+            <div class="controls" id="authControls">
+                <select id="themeSelect">
+                    <option value="light">☀️ Светлая</option>
+                    <option value="dark">🌙 Тёмная</option>
+                </select>
+                <button class="btn" onclick="openModal('loginModal')">Войти</button>
+                <button class="btn primary" onclick="openModal('registerModal')">Регистрация</button>
+            </div>
+            <div class="user-menu" id="userMenu" style="display: none;">
+                <span id="userName"></span>
+                <button class="btn" onclick="logout()">Выйти</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="wrap">
+        <div class="page-header">
+            <h1>Часто задаваемые вопросы</h1>
+            <p class="page-subtitle">Найдите ответы на популярные вопросы о платформе и поиске работы</p>
+        </div>
+
+        <div class="search-faq">
+            <input type="text" id="faqSearch" placeholder="Поиск по вопросам..." onkeyup="searchFAQ()">
+            <button class="btn primary">🔍 Поиск</button>
+        </div>
+
+        <div class="faq-categories">
+            <button class="category-btn active" onclick="showCategory('all')">Все вопросы</button>
+            <button class="category-btn" onclick="showCategory('account')">Аккаунт</button>
+            <button class="category-btn" onclick="showCategory('resume')">Резюме</button>
+            <button class="category-btn" onclick="showCategory('vacancies')">Вакансии</button>
+            <button class="category-btn" onclick="showCategory('employer')">Работодателям</button>
+        </div>
+
+        <div class="faq-container">
+            <div class="faq-section">
+                <h2>👤 Для соискателей</h2>
+                
+                <div class="faq-item" data-category="account">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Как зарегистрироваться на платформе?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Для регистрации нажмите кнопку "Регистрация" в правом верхнем углу, выберите тип аккаунта "Соискатель" и заполните необходимые данные: имя, email и пароль.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="resume">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Как создать привлекательное резюме?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Используйте наш конструктор резюме! Он поможет:</p>
+                        <ul>
+                            <li>Структурировать информацию</li>
+                            <li>Выделить ключевые навыки</li>
+                            <li>Подобрать правильные формулировки</li>
+                            <li>Оптимизировать для поиска работодателями</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="vacancies">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Как откликнуться на вакансию?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Найдите подходящую вакансию и нажмите кнопку "Откликнуться". Вы можете:</p>
+                        <ul>
+                            <li>Отправить готовое резюме</li>
+                            <li>Написать сопроводительное письмо</li>
+                            <li>Прикрепить дополнительные файлы</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="account">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Как восстановить доступ к аккаунту?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>На странице входа нажмите "Забыли пароль?", введите email, указанный при регистрации, и следуйте инструкциям в письме.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-section">
+                <h2>🏢 Для работодателей</h2>
+                
+                <div class="faq-item" data-category="employer">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Как разместить вакансию?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Зарегистрируйтесь как работодатель, затем в личном кабинете нажмите "Разместить вакансию" и заполните форму:</p>
+                        <ul>
+                            <li>Название должности</li>
+                            <li>Описание и требования</li>
+                            <li>Зарплатный диапазон</li>
+                            <li>Контактные данные</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="employer">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Сколько стоит размещение вакансий?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Мы предлагаем несколько тарифных планов:</p>
+                        <ul>
+                            <li><strong>Базовый</strong> - 1 вакансия бесплатно</li>
+                            <li><strong>Профессиональный</strong> - 5 вакансий, 2990₽/месяц</li>
+                            <li><strong>Бизнес</strong> - неограниченно, 5990₽/месяц</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="employer">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Как найти подходящих кандидатов?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Используйте расширенный поиск по резюме:</p>
+                        <ul>
+                            <li>Фильтруйте по опыту работы</li>
+                            <li>Ищите по ключевым навыкам</li>
+                            <li>Отбирайте по локации</li>
+                            <li>Смотрите рейтинг кандидатов</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-section">
+                <h2>⚙️ Технические вопросы</h2>
+                
+                <div class="faq-item" data-category="account">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Поддерживаются ли мобильные устройства?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Да! Наш сайт полностью адаптирован для мобильных устройств. Также мы разрабатываем мобильное приложение для iOS и Android.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Какие браузеры поддерживаются?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Платформа работает во всех современных браузерах:</p>
+                        <ul>
+                            <li>Google Chrome 80+</li>
+                            <li>Mozilla Firefox 75+</li>
+                            <li>Safari 13+</li>
+                            <li>Microsoft Edge 80+</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-support">
+            <div class="support-card">
+                <h3>Не нашли ответ?</h3>
+                <p>Наша служба поддержки всегда готова помочь вам</p>
+                <div class="support-actions">
+                    <button class="btn primary" onclick="openModal('contactModal')">📧 Написать в поддержку</button>
+                    <button class="btn btn-outline" onclick="openChat()">💬 Онлайн-чат</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <!-- Тот же футер что и в blog.html -->
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="faq.js"></script>
+</body>
+</html>

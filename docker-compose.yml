@@ -1,0 +1,36 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: careeruser
+      POSTGRES_PASSWORD: careerpass
+      POSTGRES_DB: careerdb
+    volumes:
+    - db_data:/var/lib/postgresql/data
+    ports:
+    - 5432:5432
+  backend:
+    build:
+      context: ./
+      dockerfile: Dockerfile.backend
+    depends_on:
+    - db
+    environment:
+    - NODE_ENV=production
+    - DATABASE_URL=postgres://careeruser:careerpass@db:5432/careerdb
+    - PORT=5000
+    ports:
+    - 5000:5000
+  frontend:
+    build:
+      context: ./
+      dockerfile: Dockerfile.frontend
+    depends_on:
+    - backend
+    ports:
+    - 3000:80
+    environment:
+    - REACT_APP_API_URL=http://backend:5000
+volumes:
+  db_data: {}

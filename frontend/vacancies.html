@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вакансии - CareerFinder</title>
+    <meta name="description" content="Найдите подходящие вакансии на CareerFinder. Тысячи предложений работы от проверенных компаний.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Перейти к основному содержанию</a>
+
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 2L20 8H28L32 14V28C32 29.1046 31.1046 30 30 30H2C0.89543 30 0 29.1046 0 28V14L4 8H12L16 2Z" fill="url(#logoGradient)"/>
+                        <path d="M12 8H20L16 2L12 8Z" fill="white" fill-opacity="0.2"/>
+                        <path d="M4 8H28L32 14H0L4 8Z" fill="white" fill-opacity="0.3"/>
+                        <path d="M8 14V24H12V14M14 14V24H18V14M20 14V24H24V14" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                        <defs>
+                            <linearGradient id="logoGradient" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#2563eb"/>
+                                <stop offset="1" stop-color="#1d4ed8"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <span class="brand-title">CareerFinder</span>
+            </a>
+            
+            <nav>
+                <a href="index.html" class="nav-link">Главная</a>
+                <a href="vacancies.html" class="nav-link active">Вакансии</a>
+                <a href="companies.html" class="nav-link">Компании</a>
+                <a href="events.html" class="nav-link">Мероприятия</a>
+                <a href="blog.html" class="nav-link">Блог</a>
+            </nav>
+            
+            <div class="auth-buttons">
+                <button class="btn btn-outline" onclick="openModal('loginModal')">Войти</button>
+                <button class="btn btn-primary" onclick="openModal('registerModal')">Регистрация</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <div class="wrap">
+            <div class="section-header">
+                <h1>Найдите свою идеальную работу</h1>
+                <p class="lead">Более 5,000 вакансий от 1,200+ компаний</p>
+            </div>
+
+            <!-- Search and Filters -->
+            <div class="filters-section">
+                <form class="filters-form" id="vacancyFilters">
+                    <div class="filter-group">
+                        <label for="keywords">Ключевые слова</label>
+                        <input type="text" id="keywords" name="keywords" placeholder="Должность, навыки, компания">
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="location">Город</label>
+                        <input type="text" id="location" name="location" placeholder="Москва, Санкт-Петербург...">
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="salary">Зарплата от</label>
+                        <input type="number" id="salary" name="salary" placeholder="100000" min="0">
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="employment">Тип занятости</label>
+                        <select id="employment" name="employment">
+                            <option value="">Любой</option>
+                            <option value="full">Полная занятость</option>
+                            <option value="part">Частичная занятость</option>
+                            <option value="remote">Удаленная работа</option>
+                            <option value="project">Проектная работа</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="experience">Опыт работы</label>
+                        <select id="experience" name="experience">
+                            <option value="">Любой</option>
+                            <option value="none">Нет опыта</option>
+                            <option value="junior">До 1 года</option>
+                            <option value="middle">1-3 года</option>
+                            <option value="senior">Более 3 лет</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Найти вакансии</button>
+                </form>
+            </div>
+
+            <!-- Quick Categories -->
+            <div class="section-header">
+                <h2>Популярные категории</h2>
+            </div>
+
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-icon">💻</div>
+                    <h3>IT & Разработка</h3>
+                    <span class="vacancy-count">1,234 вакансии</span>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">📊</div>
+                    <h3>Маркетинг</h3>
+                    <span class="vacancy-count">856 вакансий</span>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">💰</div>
+                    <h3>Финансы</h3>
+                    <span class="vacancy-count">672 вакансии</span>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🎨</div>
+                    <h3>Дизайн</h3>
+                    <span class="vacancy-count">543 вакансии</span>
+                </div>
+            </div>
+
+            <!-- Vacancies List -->
+            <div class="section-header">
+                <h2>Все вакансии</h2>
+                <div class="sorting">
+                    <label for="sort">Сортировка:</label>
+                    <select id="sort" name="sort">
+                        <option value="relevance">По релевантности</option>
+                        <option value="date">По дате</option>
+                        <option value="salary">По зарплате</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="vacancies" id="vacanciesList">
+                <!-- Vacancies loaded by JavaScript -->
+            </div>
+
+            <!-- Load More -->
+            <div class="load-more-section">
+                <button class="btn btn-outline btn-full" data-load-more="vacancies">Загрузить еще вакансии</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>CareerFinder</h4>
+                <p>Лучшая платформа для поиска работы и развития карьеры</p>
+            </div>
+            <div class="footer-section">
+                <h4>Навигация</h4>
+                <a href="index.html">Главная</a>
+                <a href="vacancies.html">Вакансии</a>
+                <a href="companies.html">Компании</a>
+                <a href="events.html">Мероприятия</a>
+                <a href="blog.html">Блог</a>
+            </div>
+            <div class="footer-section">
+                <h4>Работодателям</h4>
+                <a href="#">Разместить вакансию</a>
+                <a href="#">Регистрация компании</a>
+                <a href="#">Тарифы</a>
+            </div>
+            <div class="footer-section">
+                <h4>Контакты</h4>
+                <a href="mailto:info@careerfinder.ru">info@careerfinder.ru</a>
+                <a href="tel:+78001234567">8 (800) 123-45-67</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 CareerFinder. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <div id="loginModal" class="modal">
+        <h3>Вход в аккаунт</h3>
+        <form id="loginForm">
+            <input type="email" placeholder="Email" required>
+            <input type="password" placeholder="Пароль" required>
+            <div class="form-actions">
+                <button type="button" class="btn btn-outline" onclick="closeModal('loginModal')">Отмена</button>
+                <button type="submit" class="btn btn-primary">Войти</button>
+            </div>
+        </form>
+    </div>
+
+    <div id="registerModal" class="modal">
+        <h3>Регистрация</h3>
+        <form id="registerForm">
+            <input type="text" placeholder="Имя и фамилия" required>
+            <input type="email" placeholder="Email" required>
+            <input type="password" placeholder="Пароль" required minlength="6">
+            <input type="text" placeholder="Профессия" required>
+            <div class="form-actions">
+                <button type="button" class="btn btn-outline" onclick="closeModal('registerModal')">Отмена</button>
+                <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="overlay" id="overlay" onclick="closeAllModals()"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
